@@ -136,10 +136,10 @@ def e8():
 def e9():
     for a in range(1, 1001):
         for b in range(a + 1, 1001 - a):
-            for c in range(b + 1, 1001 - a - b):
-                aa, bb, cc = a * a, b * b, c * c
-                if a + b + c == 1000 and aa + bb == cc:
-                    return a * b * c
+            c = 1000 - a - b
+            aa, bb, cc = a * a, b * b, c * c
+            if a + b + c == 1000 and aa + bb == cc:
+                return a * b * c
 
 
 def e10():
