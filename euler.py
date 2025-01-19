@@ -44,6 +44,15 @@ def is_palindrome_number(n):
     return orig == comp
 
 
+def is_palindrome_binary(n):
+    orig, comp = n, 0
+    while n:
+        comp <<= 1
+        comp |= (n & 1)
+        n >>= 1
+    return orig == comp
+
+
 def gcd(x, y):
     if x == 0: return y
     return gcd(y % x, x)
@@ -51,6 +60,27 @@ def gcd(x, y):
 
 def lcm(x, y):
     return x * y // gcd(x, y)
+
+
+def factorial(n):
+    if n <= 1: return 1
+    return reduce(lambda a, b: a * b, range(2, n + 1))
+
+
+def number_to_digits(n):
+    res = []
+    while n:
+        res.append(n % 10)
+        n //= 10
+    res.reverse()
+    return res
+
+
+def digits_to_number(digits):
+    n = 0
+    for place, d in enumerate(reversed(digits)):
+        n += d * (10 ** place)
+    return n
 
 
 #############
@@ -146,11 +176,58 @@ def e10():
     return sum(sieve(2_000_000))
 
 
-if __name__ == "__main__":
-    solutions = [
-        e1, e2, e3, e4, e5, e6, e7, e8, e9, e10
-    ]
+def e30():
+    res, n = 0, 2
+    while n < 1_000_000:
+        sum_of_fifth_powers = sum(map(lambda n: n ** 5, number_to_digits(n)))
+        if sum_of_fifth_powers == n:
+            res += n
+        n += 1
+    return res
 
-    for i, f in enumerate(solutions):
-        print(f"{i+1: 5} {f()}")
+
+def e34():
+    factorials = {i: factorial(i) for i in range(10)}
+
+    res = 0
+    for n in range(3, 10_000_000):
+        fac_sum_digits, tmp = 0, n
+
+        while tmp:
+            fac_sum_digits += factorials[tmp % 10]
+            tmp //= 10
+
+        if fac_sum_digits == n:
+            res += n
+
+    return res
+
+
+def e36():
+    res = 0
+    for n in range(1_000_000):
+        if is_palindrome_binary(n) and is_palindrome_number(n):
+            res += n
+    return res
+
+
+if __name__ == "__main__":
+    solutions = {
+        1:  e1,
+        2:  e2,
+        3:  e3,
+        4:  e4,
+        5:  e5,
+        6:  e6,
+        7:  e7,
+        8:  e8,
+        9:  e9,
+        10: e10,
+        30: e30,
+        34: e34,
+        36: e36,
+    }
+
+    for i, f in solutions.items():
+        print(f"{i: 5} {f()}")
 
