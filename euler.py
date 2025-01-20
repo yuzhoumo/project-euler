@@ -211,6 +211,31 @@ def e36():
     return res
 
 
+def e46():
+    upper = 10_000
+    primes = set(sieve(upper))
+    primes_sorted = sorted(primes)
+
+    def valid(n):
+        for p in primes_sorted:
+            if p > n: break
+
+            for i in range(n):
+                test = 2 * i * i + p
+                if test > n:
+                    break
+                if test == n:
+                    return True
+
+        return False
+
+    for i in range(9, upper, 2):
+        if i in primes:
+            continue
+        if not valid(i):
+            return i
+
+
 if __name__ == "__main__":
     solutions = {
         1:  e1,
@@ -226,8 +251,11 @@ if __name__ == "__main__":
         30: e30,
         34: e34,
         36: e36,
+        46: e46,
     }
 
-    for i, f in solutions.items():
-        print(f"{i: 5} {f()}")
+    print(solutions[46]())
+
+    # for i, f in solutions.items():
+    #     print(f"{i: 5} {f()}")
 
