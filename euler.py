@@ -176,6 +176,12 @@ def e10():
     return sum(sieve(2_000_000))
 
 
+def e25():
+    for i, f in enumerate(fiberator()):
+        if len(number_to_digits(f)) >= 1000:
+            return i + 1
+
+
 def e30():
     res, n = 0, 2
     while n < 1_000_000:
@@ -248,13 +254,14 @@ if __name__ == "__main__":
         8:  e8,
         9:  e9,
         10: e10,
+        25: e25,
         30: e30,
         34: e34,
         36: e36,
         46: e46,
     }
 
-    print(solutions[46]())
+    print(solutions[25]())
 
     # for i, f in solutions.items():
     #     print(f"{i: 5} {f()}")
