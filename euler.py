@@ -285,6 +285,10 @@ def e46():
             return i
 
 
+def e48():
+    return str(sum(i ** i for i in range(1, 1001)))[-10:]
+
+
 if __name__ == "__main__":
     solutions = {
         1:  e1,
@@ -303,9 +307,10 @@ if __name__ == "__main__":
         34: e34,
         36: e36,
         46: e46,
+        48: e48,
     }
 
-    print(solutions[11]())
+    print(solutions[48]())
 
     # for i, f in solutions.items():
     #     print(f"{i: 5} {f()}")
