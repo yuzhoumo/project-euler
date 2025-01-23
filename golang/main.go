@@ -5,15 +5,22 @@ import (
     "project-euler/golang/solutions"
 )
 
+type sol struct {
+    id int
+    f func() string
+}
+
 func main() {
-    sols := map[string]func()string{
-        "1": solutions.E1,
-        "2": solutions.E2,
-        "3": solutions.E3,
-        "4": solutions.E4,
+    allSolutions := []sol{
+        sol{1, solutions.E1},
+        sol{2, solutions.E2},
+        sol{3, solutions.E3},
+        sol{4, solutions.E4},
+        sol{5, solutions.E5},
+        sol{6, solutions.E6},
     }
 
-    for k, v := range sols {
-        fmt.Printf("%s: %s\n", k, v())
+    for _, s := range allSolutions {
+        fmt.Printf("%d: %s\n", s.id, s.f())
     }
 }
