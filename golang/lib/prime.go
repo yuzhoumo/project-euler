@@ -2,10 +2,6 @@ package lib
 
 import "math"
 
-type GenericInt interface {
-    int | uint | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
-}
-
 func SieveOfEratosthenes[T GenericInt](size T) []bool {
     if size <= 2 {
         return make([]bool, size)

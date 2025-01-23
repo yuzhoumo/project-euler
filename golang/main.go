@@ -2,12 +2,13 @@ package main
 
 import (
     "fmt"
-    "github.com/yuzhoumo/project-euler/golang/solutions"
+    "project-euler/golang/solutions"
 )
 
 func main() {
     sols := map[string]func()string{
         "1": solutions.E1,
+        "2": solutions.E2,
     }
 
     for k, v := range sols {
