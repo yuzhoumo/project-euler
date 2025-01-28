@@ -2,6 +2,32 @@ package lib
 
 import "math"
 
+func NewPrimeIterator[T GenericInt](size T) func() T {
+	values := make([]bool, size)
+
+	var i T
+	for i = 2; i < size; i++ {
+		values[i] = true
+	}
+
+	var prime T = 2
+
+	return func() T {
+		for !values[prime] {
+			prime++
+		}
+
+		for curr := prime + prime; curr < size; curr += prime {
+			values[curr] = false
+		}
+
+		tmp := prime
+		prime++
+
+		return tmp
+	}
+}
+
 func SieveOfEratosthenes[T GenericInt](size T) []bool {
 	if size <= 2 {
 		return make([]bool, size)

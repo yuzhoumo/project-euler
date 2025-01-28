@@ -18,6 +18,7 @@ func main() {
 		sol{4, solutions.E4},
 		sol{5, solutions.E5},
 		sol{6, solutions.E6},
+		sol{7, solutions.E7},
 	}
 
 	for _, s := range allSolutions {
